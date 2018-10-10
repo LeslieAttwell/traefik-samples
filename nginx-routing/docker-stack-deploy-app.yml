@@ -1,0 +1,53 @@
+version: '3.2'
+services:
+  app-v1:
+    image: nginx:alpine
+    volumes:
+      - $PWD/www/index.v1.html:/usr/share/nginx/html/v1/index.html:ro
+    ports:
+      - "80"
+    deploy:
+      update_config:
+        delay: 5s
+      labels:
+        - "traefik.docker.network=traefik_route1"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=PathPrefix:/v1;"
+    networks:
+      - traefik_route1
+
+  app-v2:
+    image: nginx:alpine
+    volumes:
+      - $PWD/www/index.v2.html:/usr/share/nginx/html/v2/index.html:ro
+    ports:
+      - "80"
+    deploy:
+      update_config:
+        delay: 5s
+      labels:
+        - "traefik.docker.network=traefik_route1"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=PathPrefix:/v2;"
+    networks:
+      - traefik_route1
+
+  app-v3:
+    image: nginx:alpine
+    volumes:
+      - $PWD/www/index.v3.html:/usr/share/nginx/html/v3/index.html:ro
+    ports:
+      - "80"
+    deploy:
+      update_config:
+        delay: 5s
+      labels:
+        - "traefik.docker.network=traefik_route1"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=PathPrefix:/v3;"
+    networks:
+      - traefik_route1
+
+networks:
+  traefik_route1:
+    external: true  
