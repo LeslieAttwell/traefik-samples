@@ -44,7 +44,7 @@ services:
       labels:
         - "traefik.docker.network=traefik_route1"
         - "traefik.port=80"
-        - "traefik.frontend.rule=PathPrefix:/v3;"
+        - "traefik.frontend.rule=Host:myapp-app-v3.docker.localhost;"
     networks:
       - traefik_route1
 

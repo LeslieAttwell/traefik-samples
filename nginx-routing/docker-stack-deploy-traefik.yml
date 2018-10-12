@@ -7,6 +7,7 @@ services:
       --docker.swarmmode \
       --docker.watch \
       --web \
+      --api \
       --loglevel=DEBUG
     ports:
       - 80:80
